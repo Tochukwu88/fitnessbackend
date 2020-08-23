@@ -1,0 +1,24 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"path": "..\\..\\css-tutorial"
+		}
+	],
+	"settings": {
+		"emmet.includeLanguages":{
+				"javascript":"javascriptreact"
+			},
+	},
+	// "emmet.includeLanguages":{
+	// 	"javascript":"javascriptreact"
+	// },
+	// "settings": {
+	// 	"emmet.excludeLanguages": [
+
+	// 		"markdown"
+	// 	]
+	// }
+}

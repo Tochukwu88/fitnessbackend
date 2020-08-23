@@ -1,5 +1,5 @@
 const express = require('express');
-const {signup,signin,signout, requireSignin,forgotPassword,resetPassword, presignup,googleLogin} = require('../controller/auth')
+const {signup,signin,signout, requireSignin,forgotPassword,resetPassword, presignup,googleLogin, adminMiddleware} = require('../controller/auth')
 const { userValidationRules, validate,signinValidationRules,signinvalidate ,
     forgotPasswordValidationRules,
     forgotPasswordvalidate,
@@ -9,9 +9,10 @@ const { userValidationRules, validate,signinValidationRules,signinvalidate ,
 
 } = require('../validation')
 
+
 const router = express.Router();
-router.post('/pre-signup',userValidationRules(),validate, presignup)
-router.post('/signup', signup)
+router.post('/pre-signup',userValidationRules(),validate, requireSignin  , adminMiddleware, presignup)
+router.post('/signup',signup)
 router.post('/signin',signinValidationRules(),signinvalidate, signin)
 router.get('/signout',signout)
 router.put('/forgot-password',forgotPasswordValidationRules(),forgotPasswordvalidate, forgotPassword)

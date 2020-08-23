@@ -51,33 +51,7 @@ exports.presignup = (req,res)=>{
     })
 
 }
-// exports.signup=(req,res)=>{
-//     User.findOne({email:req.body.email}).exec((err,user)=>{
-//         if(user){
-//             return res.status(400).json({
-//                 error:'Email is taken'
-//             })
-//         }
-//         const {name, email,password} = req.body
-//         let username = shortid.generate()
-//         let profile = `${process.env.CLIENT_URL}/profile/${username}`
-//         let newUser = new User({name,email,password,username,profile})
-//         newUser.save((err,success)=>{
-//             if(err){
-//                 return res.status(400).json({
-//                     error:err
-//                 })
-//             }
-//           return  res.json({
-//                 message:'signup successful! please signin.'
-//             })
-//         })
 
-//     })
-   
-
-   
-// }
 exports.signup = (req,res) =>{
     const token  =req.body.token
     if(token){
@@ -149,6 +123,7 @@ exports.requireSignin = expressjwt({
     secret:process.env.JWT_SECRET,algorithms: ['HS256']
 })
 exports.authMiddleware = (req,res,next)=>{
+    console.log(req.user)
     const authUserId = req.user._id
     User.findById({_id:authUserId}).exec((err,user)=>{
         if(err || !user){
